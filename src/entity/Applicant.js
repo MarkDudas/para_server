@@ -9,13 +9,19 @@ const ApplicantSchema = new mongoose.Schema(
       type: String,
     },
     skills: {
-      type: [String],
+      type: String,
     },
     job_applying: {
       type: String,
     },
+    experience: {
+      type: String,
+    },
     rank: {
       type: Number,
+    },
+    how: {
+      type: String,
     },
     jobId: {
       type: String,

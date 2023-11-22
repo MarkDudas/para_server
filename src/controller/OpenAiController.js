@@ -21,7 +21,9 @@ const getChatReply = async (req, res) => {
   - email: The email address of the applicant
   - skills: A list of skills that the applicant has
   - job_applying: The title of the job that the applicant is applying for
+  - experience: The experience of the applicant
   - rank: A number between 0 and 100% indicating how well the resume matches the job description
+  - how: How do you asses the ranking
 
   NOTE: Output should be JSON object ONLY WITHOUT any words before or after the JSON object
 
@@ -32,7 +34,9 @@ const getChatReply = async (req, res) => {
     "email": "john.smith@example.com",
     "skills": ["Driving"],
     "job_applying": "Driver",
-    "rank": 85
+    "experience": " 2years of driving 10 wheeler truck"
+    "rank": 85,
+    "how": "it is 85 because he has a drivers license, high school diploma, can drive 10-wheeler truck, 2 years experience",
   }`;
 
   const { jobDescription } = req.query;
