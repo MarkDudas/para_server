@@ -21,7 +21,7 @@ const getChatReply = async (req, res) => {
   - email: The email address of the applicant
   - skills: A list of skills that the applicant has
   - job_applying: The title of the job that the applicant is applying for
-  - experience: The experience of the applicant
+  - experience: The experience of the applicant or Compute the experience of the applicant
   - rank: A number between 0 and 100% indicating how well the resume matches the job description
   - how: How do you asses the ranking
 
