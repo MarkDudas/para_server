@@ -87,6 +87,7 @@ app.post("/upload-files", upload.single("pdfFile"), async (req, res) => {
   const rank = req.body.rank;
   const skills = req.body.skills;
   const how = req.body.how;
+  const experience = req.body.experience;
 
   try {
     const pdfFile = await uploadToCloudinary(req.file);
@@ -101,6 +102,7 @@ app.post("/upload-files", upload.single("pdfFile"), async (req, res) => {
       rank: rank,
       skills: skills,
       how: how,
+      experience: experience,
     });
   } catch (error) {
     console.log(error);
