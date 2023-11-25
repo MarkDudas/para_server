@@ -35,8 +35,8 @@ const getChatReply = async (req, res) => {
     "skills": ["Driving"],
     "job_applying": "Driver",
     "experience": " 2years of driving 10 wheeler truck"
-    "rank": 85,
-    "how": "it is 85 because he has a drivers license, high school diploma, can drive 10-wheeler truck, 2 years experience",
+    "rank": 100,
+    "how": "it is 100 because he has a drivers license, high school diploma, can drive 10-wheeler truck, 5 years experience",
   }`;
 
   const { jobDescription } = req.query;
