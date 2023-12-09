@@ -15,4 +15,6 @@ router.put("/update-password/:email", UserController.updatePasswordByEmail);
 
 router.get("/list/hr", UserController.getUsersByRole);
 
+router.post("/check-email", UserController.checkEmail);
+
 module.exports = router;

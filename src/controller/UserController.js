@@ -1,6 +1,25 @@
 const User = require("../entity/User");
 const bcrypt = require("bcrypt");
 
+
+const checkEmail = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: "Missing email field" });
+    }
+
+    const existingUser = await User.findOne({ email });
+    const emailExists = !!existingUser;
+
+    res.status(200).json({ emailExists });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 const registerUser = async (req, res) => {
   try {
     const {
@@ -135,4 +154,5 @@ module.exports = {
   updateUserByEmail,
   updatePasswordByEmail,
   getUsersByRole,
+  checkEmail,
 };
