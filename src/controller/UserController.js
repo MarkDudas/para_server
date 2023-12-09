@@ -1,6 +1,6 @@
 const User = require("../entity/User");
 const bcrypt = require("bcrypt");
-
+const Joi = require('joi');
 
 const checkEmail = async (req, res) => {
   try {
@@ -33,7 +33,24 @@ const registerUser = async (req, res) => {
       email,
       password,
     } = req.body;
-
+    
+    const passwordValidation = Joi.object({
+      password: Joi.string()
+        .min(6)
+        .regex(/^(?=.*[A-Z])(?=.*\d)/)
+        .required()
+        .messages({
+          'string.min': 'Password must be at least 6 characters long',
+          'string.pattern.base': 'Password must contain at least one uppercase letter and one digit',
+        }),
+    });
+    
+    const { error } = passwordValidation.validate({ password });
+    
+    if (error) {
+      return res.status(400).json({ message: error.details.map((detail) => detail.message) });
+    }
+    
     if (!lastName || !firstName || !address || !email || !password) {
       return res.status(400).json({ message: "Missing required fields" });
     }
