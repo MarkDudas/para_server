@@ -13,6 +13,11 @@ router.put("/update/:email", UserController.updateUserByEmail);
 
 router.put("/update-password/:email", UserController.updatePasswordByEmail);
 
+router.put(
+  "/update-profile-image/:email",
+  UserController.updateUserProfileImageByEmail
+);
+
 router.get("/list/hr", UserController.getUsersByRole);
 
 router.post("/check-email", UserController.checkEmail);

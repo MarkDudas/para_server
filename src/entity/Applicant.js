@@ -14,6 +14,9 @@ const ApplicantSchema = new mongoose.Schema(
     job_applying: {
       type: String,
     },
+    jobDescription: {
+      type: String,
+    },
     experience: {
       type: String,
     },

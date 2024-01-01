@@ -20,6 +20,7 @@ const LanguageRouter = require("./route/LanguageRouter");
 const ApplicantRouter = require("./route/ApplicantRouter");
 const OpenAiRouter = require("./route/OpenAiRouter");
 const EmailRouter = require("./route/EmailRouter");
+const CompanyRouter = require("./route/CompanyRouter");
 
 app.use(cors());
 
@@ -51,6 +52,7 @@ app.use("/api/skill", SkillRouter);
 app.use("/api/language", LanguageRouter);
 app.use("/api/applicant", ApplicantRouter);
 app.use("/api/email", EmailRouter);
+app.use("/api/company", CompanyRouter);
 
 //
 
@@ -88,6 +90,7 @@ app.post("/upload-files", upload.single("pdfFile"), async (req, res) => {
   const skills = req.body.skills;
   const how = req.body.how;
   const experience = req.body.experience;
+  const jobDescription = req.body.jobDescription;
 
   try {
     const pdfFile = await uploadToCloudinary(req.file);
@@ -103,6 +106,7 @@ app.post("/upload-files", upload.single("pdfFile"), async (req, res) => {
       skills: skills,
       how: how,
       experience: experience,
+      jobDescription: jobDescription,
     });
   } catch (error) {
     console.log(error);

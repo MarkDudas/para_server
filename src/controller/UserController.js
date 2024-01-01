@@ -1,6 +1,6 @@
 const User = require("../entity/User");
 const bcrypt = require("bcrypt");
-const Joi = require('joi');
+const Joi = require("joi");
 
 const checkEmail = async (req, res) => {
   try {
@@ -32,25 +32,29 @@ const registerUser = async (req, res) => {
       role,
       email,
       password,
+      contactNumber,
     } = req.body;
-    
+
     const passwordValidation = Joi.object({
       password: Joi.string()
         .min(6)
         .regex(/^(?=.*[A-Z])(?=.*\d)/)
         .required()
         .messages({
-          'string.min': 'Password must be at least 6 characters long',
-          'string.pattern.base': 'Password must contain at least one uppercase letter and one digit',
+          "string.min": "Password must be at least 6 characters long",
+          "string.pattern.base":
+            "Password must contain at least one uppercase letter and one digit",
         }),
     });
-    
+
     const { error } = passwordValidation.validate({ password });
-    
+
     if (error) {
-      return res.status(400).json({ message: error.details.map((detail) => detail.message) });
+      return res
+        .status(400)
+        .json({ message: error.details.map((detail) => detail.message) });
     }
-    
+
     if (!lastName || !firstName || !address || !email || !password) {
       return res.status(400).json({ message: "Missing required fields" });
     }
@@ -72,6 +76,7 @@ const registerUser = async (req, res) => {
       gender,
       birthday,
       password: hashedPassword,
+      contactNumber,
     });
 
     await newUser.save();
@@ -163,6 +168,18 @@ const updatePasswordByEmail = async (req, res) => {
   }
 };
 
+const updateUserProfileImageByEmail = async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { email: req.params.email },
+      { profileImage: req.body.profileImage }
+    );
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
@@ -172,4 +189,5 @@ module.exports = {
   updatePasswordByEmail,
   getUsersByRole,
   checkEmail,
+  updateUserProfileImageByEmail,
 };
