@@ -22,7 +22,7 @@ const getChatReply = async (req, res) => {
   - skills: A list of skills that the applicant has
   - job_applying: The title of the job that the applicant is applying for
   - experience: The experience of the applicant or Compute the experience of the applicant
-  - rank: A number between 0 and 100% indicating how well the resume matches the job description
+  - rank: A number between 0 and 100% indicating how well the resume matches the job qualifications
   - how: How do you asses the ranking
 
   NOTE: Output should be JSON object ONLY WITHOUT any words before or after the JSON object
@@ -39,9 +39,9 @@ const getChatReply = async (req, res) => {
     "how": "it is 85 because he has a drivers license, high school diploma, can drive 10-wheeler truck, only 2 years experience which does not match the 5 years requirements",
   }`;
 
-  const { jobDescription } = req.query;
+  const { jobQualifications } = req.query;
 
-  const prompt = `Instruction: ${instructions}\n Job Description: ${jobDescription} \n Resume:${extractedText}`;
+  const prompt = `Instruction: ${instructions}\n Job Qualifications: ${jobQualifications} \n Resume:${extractedText}`;
 
   const data = {
     model: "gpt-3.5-turbo",
