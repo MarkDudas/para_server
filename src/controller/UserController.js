@@ -180,6 +180,18 @@ const updateUserProfileImageByEmail = async (req, res) => {
   }
 };
 
+const updateUserPositionByEmail = async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { email: req.params.email },
+      { position: req.body.position }
+    );
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
@@ -190,4 +202,5 @@ module.exports = {
   getUsersByRole,
   checkEmail,
   updateUserProfileImageByEmail,
+  updateUserPositionByEmail,
 };

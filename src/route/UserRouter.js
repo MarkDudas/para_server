@@ -18,6 +18,8 @@ router.put(
   UserController.updateUserProfileImageByEmail
 );
 
+router.put("/update-position/:email", UserController.updateUserPositionByEmail);
+
 router.get("/list/hr", UserController.getUsersByRole);
 
 router.post("/check-email", UserController.checkEmail);
